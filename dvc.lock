@@ -31,5 +31,5 @@ stages:
       size: 374096
     - path: .\src\data\step_2_Independent_HousesDatset_cleaning.py
       hash: md5
-      md5: cb7922fcbf32220d05f9085092db959e
-      size: 3017
+      md5: a36985b585ea37b2cf69e52268bd0d18
+      size: 3038

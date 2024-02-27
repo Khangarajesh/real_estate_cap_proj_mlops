@@ -71,6 +71,7 @@ def independent_house_data_cleaning():
   
   
 if __name__ == '__main__':
+    # run function 
     independent_house_data_cleaning()
   
 
