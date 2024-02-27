@@ -70,6 +70,6 @@ def data_cleaning():
     flats.to_csv('data/processed/flats_cleaned.csv', index = True)
 
 
-if __name__ == '__main__':
+#if __name__ == '__main__':
     
-     data_cleaning()
+     #data_cleaning()
