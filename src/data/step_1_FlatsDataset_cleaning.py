@@ -15,7 +15,7 @@ def price_in_crore_KHANGAR(x):
 
 
 def data_cleaning():
-    #function for reading file
+    #function for reading file, data cleaning and storing in data/processed folder
     curr_dir = pathlib.Path(__file__)
     home_dir = curr_dir.parent.parent.parent
     file_path = home_dir.as_posix()+"/data/raw/flats.xlsx"
