@@ -14,7 +14,7 @@ def save_data(file, output_path):
   curr_dir = pathlib.Path(__file__)
   home_dir = curr_dir.parent.parent.parent
   processed_f_path = home_dir.as_posix() + output_path
-  file.to_csv(processed_f_path)
+  file.to_csv(processed_f_path,index = False)
 
 def merge():
   flats = read_data('/data/processed/flats_cleaned.csv')

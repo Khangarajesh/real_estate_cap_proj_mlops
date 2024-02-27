@@ -27,7 +27,7 @@ def save_file(file,output_path):
   home_dir = pathlib.Path(__file__).parent.parent.parent
   file_path = home_dir.as_posix() + output_path
   pathlib.Path(file_path).mkdir(parents = True, exist_ok= True)
-  file.to_csv(file_path+'/independent_house_cleaned.csv')
+  file.to_csv(file_path+'/independent_house_cleaned.csv',index = True)
 
 
 def independent_house_data_cleaning():

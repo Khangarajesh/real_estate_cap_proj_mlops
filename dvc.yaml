@@ -17,4 +17,8 @@ stages:
     - .\src\data\step_3_merge_flats_and_house.py
     - .\data\processed\
    
-   
+   step_4_data_preprocessing_level_2:
+    cmd: python .\src\data\step_4_data_preprocessing_level_2.py .\data\processed\
+    deps:
+    - .\data\processed\
+    - .\src\data\step_4_data_preprocessing_level_2.py

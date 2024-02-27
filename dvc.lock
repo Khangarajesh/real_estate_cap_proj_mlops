@@ -31,17 +31,29 @@ stages:
       size: 374096
     - path: .\src\data\step_2_Independent_HousesDatset_cleaning.py
       hash: md5
-      md5: a36985b585ea37b2cf69e52268bd0d18
-      size: 3038
+      md5: a3ebc7c69d384b9830bb48e2e63f73e0
+      size: 3051
   step_3_merge_flats_and_house:
     cmd: python .\src\data\step_3_merge_flats_and_house.py .\data\processed\
     deps:
     - path: .\data\processed\
       hash: md5
-      md5: 8077b182515b894ef3a9ed83d4d8e4d4.dir
-      size: 14011742
-      nfiles: 4
+      md5: a6103063b50fa0494ffc5646aa1d2af0.dir
+      size: 17893307
+      nfiles: 5
     - path: .\src\data\step_3_merge_flats_and_house.py
       hash: md5
-      md5: 4e320d44563469ab171d078f0dd133c7
-      size: 920
+      md5: 5e3180a3eebeda88c2c1b857c3a226d4
+      size: 934
+  step_4_data_preprocessing_level_2:
+    cmd: python .\src\data\step_4_data_preprocessing_level_2.py .\data\processed\
+    deps:
+    - path: .\data\processed\
+      hash: md5
+      md5: a6103063b50fa0494ffc5646aa1d2af0.dir
+      size: 17893307
+      nfiles: 5
+    - path: .\src\data\step_4_data_preprocessing_level_2.py
+      hash: md5
+      md5: 1445fbf5fea1b8b73e5eb70dea592e2b
+      size: 6854
