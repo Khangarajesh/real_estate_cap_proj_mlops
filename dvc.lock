@@ -9,5 +9,5 @@ stages:
       size: 952330
     - path: .\src\data\step_1_FlatsDataset_cleaning.py
       hash: md5
-      md5: 559484be2f60daae581152d938dd9225
-      size: 2881
+      md5: f7b7348282ccd6fef34bbf9eb56b645b
+      size: 3324
