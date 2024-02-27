@@ -11,3 +11,25 @@ stages:
       hash: md5
       md5: 983b99eb19f14a49aa2a0164f301dfb2
       size: 3328
+  step_1_FlatsDataset_cleaning:
+    cmd: python .\src\data\step_1_FlatsDataset_cleaning.py .\data\raw\flats.xlsx
+    deps:
+    - path: .\data\raw\flats.xlsx
+      hash: md5
+      md5: 6f8659f4f64d5299dcb9753b1979cfa8
+      size: 952330
+    - path: .\src\data\step_1_FlatsDataset_cleaning.py
+      hash: md5
+      md5: 983b99eb19f14a49aa2a0164f301dfb2
+      size: 3328
+  step_2_Independent_HousesDatset_cleaning:
+    cmd: python .\src\data\step_2_Independent_HousesDatset_cleaning.py .\data\raw\independent-house.xlsx
+    deps:
+    - path: .\data\raw\independent-house.xlsx
+      hash: md5
+      md5: 2fcaa8e5d8ad2b5b027caab60bca021c
+      size: 374096
+    - path: .\src\data\step_2_Independent_HousesDatset_cleaning.py
+      hash: md5
+      md5: cb7922fcbf32220d05f9085092db959e
+      size: 3017

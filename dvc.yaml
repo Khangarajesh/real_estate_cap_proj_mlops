@@ -1,7 +1,13 @@
 stages:
-   data cleaning:
+   step_1_FlatsDataset_cleaning:
     cmd: python .\src\data\step_1_FlatsDataset_cleaning.py .\data\raw\flats.xlsx
     deps:
     - .\src\data\step_1_FlatsDataset_cleaning.py
     - .\data\raw\flats.xlsx
   
+   step_2_Independent_HousesDatset_cleaning:
+    cmd: python .\src\data\step_2_Independent_HousesDatset_cleaning.py .\data\raw\independent-house.xlsx
+    deps:
+    - .\src\data\step_2_Independent_HousesDatset_cleaning.py
+    - .\data\raw\independent-house.xlsx
+   
