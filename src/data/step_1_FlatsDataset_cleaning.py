@@ -26,8 +26,8 @@ def save_file(file,output_path):
   curr_dir = pathlib.Path(__file__)
   home_dir = curr_dir.parent.parent.parent
   file_path = home_dir.as_posix()+output_path
-  pathlib.Path(file_path).mkdir(parent = True, exist_ok = True)
-  file.to_csv(file_path, index = True)
+  pathlib.Path(file_path).mkdir(parents = True, exist_ok = True)
+  file.to_csv(file_path+'/flats_cleaned.csv', index = True)
 
 def data_cleaning():
     #read file using function
@@ -68,9 +68,9 @@ def data_cleaning():
 
 
     #send the clean file
-    save_file(flats, 'data/processed/flats_cleaned.csv')
+    save_file(flats, '/data/processed')
 
 
 if __name__ == '__main__':
     
-     data_cleaning()  #this will run the function and create the output of the step
+     data_cleaning()  #this will run the function and create the output of the ste
