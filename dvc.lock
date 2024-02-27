@@ -1,0 +1,13 @@
+schema: '2.0'
+stages:
+  data cleaning:
+    cmd: python .\src\data\step_1_FlatsDataset_cleaning.py .\data\raw\flats.xlsx
+    deps:
+    - path: .\data\raw\flats.xlsx
+      hash: md5
+      md5: 6f8659f4f64d5299dcb9753b1979cfa8
+      size: 952330
+    - path: .\src\data\step_1_FlatsDataset_cleaning.py
+      hash: md5
+      md5: e057b3a47f5be498d1fb6c4fb781a466
+      size: 2829

@@ -1,0 +1,7 @@
+stages:
+   data cleaning:
+    cmd: python .\src\data\step_1_FlatsDataset_cleaning.py .\data\raw\flats.xlsx
+    deps:
+    - .\src\data\step_1_FlatsDataset_cleaning.py
+    - .\data\raw\flats.xlsx
+  
