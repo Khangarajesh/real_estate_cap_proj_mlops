@@ -10,4 +10,11 @@ stages:
     deps:
     - .\src\data\step_2_Independent_HousesDatset_cleaning.py
     - .\data\raw\independent-house.xlsx
+
+   step_3_merge_flats_and_house:
+    cmd: python .\src\data\step_3_merge_flats_and_house.py .\data\processed\
+    deps:
+    - .\src\data\step_3_merge_flats_and_house.py
+    - .\data\processed\
+   
    

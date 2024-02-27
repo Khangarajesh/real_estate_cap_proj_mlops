@@ -33,3 +33,15 @@ stages:
       hash: md5
       md5: a36985b585ea37b2cf69e52268bd0d18
       size: 3038
+  step_3_merge_flats_and_house:
+    cmd: python .\src\data\step_3_merge_flats_and_house.py .\data\processed\
+    deps:
+    - path: .\data\processed\
+      hash: md5
+      md5: 8077b182515b894ef3a9ed83d4d8e4d4.dir
+      size: 14011742
+      nfiles: 4
+    - path: .\src\data\step_3_merge_flats_and_house.py
+      hash: md5
+      md5: 4e320d44563469ab171d078f0dd133c7
+      size: 920
