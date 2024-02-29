@@ -23,7 +23,7 @@ def save_file(file, output_path):
  
 # Extract the super built up area from areaWithType column
 def extract_super_built_up (x):
-    pattern = r"Super Built up area ([-+]?\d*\.\d+|\d+)([-+]?\d*\.\d+|\d+)sq\.m\."
+    pattern = r"Super Built up area ([-+]?\d*\.\d+|\d+)\(([-+]?\d*\.\d+|\d+) sq\.m\.\)"
     match = re.search(pattern, x)
     if match:
        return float(match.group(1))
@@ -70,14 +70,16 @@ def carpet (x):
  
 #convert from sq.m. to sq.ft.
 def convert_to_sqft(text, area_value):
+    
     if np.isnan(area_value):
-        return np.NaN
+        return np.NaN  
     match = re.search(r'{}\((\d+\.?\d*) sq.m.\)'.format(int(area_value)), text)
     if match:
         sq_m_value = float(match.group(1))
         return sq_m_value * 10.7639  # conversion factor from sq.m. to sqft
-    return area_value
-
+    else:
+        return area_value
+  
 #extract plot area in case of house and store it as a built up area
 def extract_plot(text):
     pattern = r'Plot area ([-+]?\d*\.\d+|\d+)(([-+]?\d*\.\d+|\d+) sq.m.)'
@@ -160,8 +162,10 @@ def feature_eng():
     #Remove trailing spaces
     df['areaWithType'] = df['areaWithType'].str.strip()
     
+    
     #create column super_built_up_area
     df.insert(7,column = 'super_built_up_area',value = df['areaWithType'].apply(lambda x: extract_super_built_up(str(x))))
+    print(df['super_built_up_area'].head(10))
     df['super_built_up_area'] = df.apply(lambda x : convert_to_sqft(x['areaWithType'], x['super_built_up_area']), axis = 1)
     
     #create column built_up_area
@@ -410,5 +414,9 @@ def feature_eng():
     
     df.reset_index(inplace = True)
     df.drop(columns = ['nearbyLocations','furnishDetails','features','additionalRoom'],inplace=True)
-    
+    print("i reached near save file")
     save_file(df,'/data/processed/gurgaon_properties_cleaned_v2.csv')
+    
+    
+if __name__ == '__main__':
+  feature_eng()

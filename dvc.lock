@@ -38,9 +38,9 @@ stages:
     deps:
     - path: .\data\processed\
       hash: md5
-      md5: a6103063b50fa0494ffc5646aa1d2af0.dir
-      size: 17893307
-      nfiles: 5
+      md5: 3c84b9166d90f40903b8b619d4f47d2b.dir
+      size: 18584913
+      nfiles: 6
     - path: .\src\data\step_3_merge_flats_and_house.py
       hash: md5
       md5: 5e3180a3eebeda88c2c1b857c3a226d4
@@ -50,10 +50,26 @@ stages:
     deps:
     - path: .\data\processed\
       hash: md5
-      md5: a6103063b50fa0494ffc5646aa1d2af0.dir
-      size: 17893307
-      nfiles: 5
+      md5: 3c84b9166d90f40903b8b619d4f47d2b.dir
+      size: 18584913
+      nfiles: 6
     - path: .\src\data\step_4_data_preprocessing_level_2.py
       hash: md5
       md5: 1445fbf5fea1b8b73e5eb70dea592e2b
       size: 6854
+  step_5_Feature_Engineering:
+    cmd: python .\src\features\step_5_Feature_Engineering.py .\data\processed\gurgaon_properties_cleaned_v1.csv
+      .\data\raw\appartments (1).csv
+    deps:
+    - path: .\data\processed\gurgaon_properties_cleaned_v1.csv
+      hash: md5
+      md5: 11e17bf55bdc8391779ce3815c191ecf
+      size: 3900963
+    - path: .\data\raw\appartments (1).csv
+      hash: md5
+      md5: 0973dd4bd85442c26003fb77c63f3544
+      size: 272474
+    - path: .\src\features\step_5_Feature_Engineering.py
+      hash: md5
+      md5: 7af941648705c7cb33790fbaaa111d86
+      size: 14571
