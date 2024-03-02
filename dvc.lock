@@ -38,9 +38,9 @@ stages:
     deps:
     - path: .\data\processed\
       hash: md5
-      md5: 49ab17bdfbe8ed4a8782df62dcb6ce8d.dir
-      size: 19294034
-      nfiles: 7
+      md5: 13956ed6c4d17ba66a5048a742e353d2.dir
+      size: 19692791
+      nfiles: 8
     - path: .\src\data\step_3_merge_flats_and_house.py
       hash: md5
       md5: 5e3180a3eebeda88c2c1b857c3a226d4
@@ -50,9 +50,9 @@ stages:
     deps:
     - path: .\data\processed\
       hash: md5
-      md5: 49ab17bdfbe8ed4a8782df62dcb6ce8d.dir
-      size: 19294034
-      nfiles: 7
+      md5: 13956ed6c4d17ba66a5048a742e353d2.dir
+      size: 19692791
+      nfiles: 8
     - path: .\src\data\step_4_data_preprocessing_level_2.py
       hash: md5
       md5: 1445fbf5fea1b8b73e5eb70dea592e2b
