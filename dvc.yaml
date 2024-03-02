@@ -35,3 +35,9 @@ stages:
     deps:
     - .\src\data\step_8_Outlier_Treatment.py
     - .\data\processed\gurgaon_properties_cleaned_v2.csv
+  
+   step_9_missing_value_imputation:
+    cmd: python .\src\data\step_9_missing_value_imputation.py .\data\processed\gurgaon_properties_outliers_trated.csv
+    deps:
+    - .\src\data\step_9_missing_value_imputation.py
+    - .\data\processed\gurgaon_properties_outliers_trated.csv

@@ -84,3 +84,14 @@ stages:
       hash: md5
       md5: f794a4c1899a43684bd164912f2f27de
       size: 5725
+  step_9_missing_value_imputation:
+    cmd: python .\src\data\step_9_missing_value_imputation.py .\data\processed\gurgaon_properties_outliers_trated.csv
+    deps:
+    - path: .\data\processed\gurgaon_properties_outliers_trated.csv
+      hash: md5
+      md5: 8d2d3d1f1cee19f168ca6b75fda3c25e
+      size: 709121
+    - path: .\src\data\step_9_missing_value_imputation.py
+      hash: md5
+      md5: 8629dce4eb8b0ede77c3c0e324aaf85a
+      size: 6661
