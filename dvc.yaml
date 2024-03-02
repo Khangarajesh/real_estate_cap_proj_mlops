@@ -29,3 +29,9 @@ stages:
     - .\data\raw\appartments (1).csv
     - .\data\processed\gurgaon_properties_cleaned_v1.csv
     - .\src\features\step_5_Feature_Engineering.py
+
+   step_8_Outlier_Treatment:
+    cmd: python .\src\features\step_8_Outlier_Treatment.py .\data\processed\gurgaon_properties_cleaned_v2.csv
+    deps:
+    - .\src\features\step_8_Outlier_Treatment.py
+    - .\data\processed\gurgaon_properties_cleaned_v2.csv
