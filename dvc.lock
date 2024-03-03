@@ -38,9 +38,9 @@ stages:
     deps:
     - path: .\data\processed\
       hash: md5
-      md5: 13956ed6c4d17ba66a5048a742e353d2.dir
-      size: 19692791
-      nfiles: 8
+      md5: 2b08ad687d394076860d4782b684ca0a.dir
+      size: 19924449
+      nfiles: 9
     - path: .\src\data\step_3_merge_flats_and_house.py
       hash: md5
       md5: 5e3180a3eebeda88c2c1b857c3a226d4
@@ -50,9 +50,9 @@ stages:
     deps:
     - path: .\data\processed\
       hash: md5
-      md5: 13956ed6c4d17ba66a5048a742e353d2.dir
-      size: 19692791
-      nfiles: 8
+      md5: 2b08ad687d394076860d4782b684ca0a.dir
+      size: 19924449
+      nfiles: 9
     - path: .\src\data\step_4_data_preprocessing_level_2.py
       hash: md5
       md5: 1445fbf5fea1b8b73e5eb70dea592e2b
@@ -63,8 +63,8 @@ stages:
     deps:
     - path: .\data\processed\gurgaon_properties_cleaned_v1.csv
       hash: md5
-      md5: 11e17bf55bdc8391779ce3815c191ecf
-      size: 3900963
+      md5: 98350a1c3eda2d1d693d26dc67cb4e2e
+      size: 3900964
     - path: .\data\raw\appartments (1).csv
       hash: md5
       md5: 0973dd4bd85442c26003fb77c63f3544
@@ -78,8 +78,8 @@ stages:
     deps:
     - path: .\data\processed\gurgaon_properties_cleaned_v2.csv
       hash: md5
-      md5: ce559547295dd27a9d7ba27f829727de
-      size: 691604
+      md5: 24d2097a46f660d466114edd5d47ade1
+      size: 691600
     - path: .\src\data\step_8_Outlier_Treatment.py
       hash: md5
       md5: f794a4c1899a43684bd164912f2f27de
@@ -89,9 +89,21 @@ stages:
     deps:
     - path: .\data\processed\gurgaon_properties_outliers_trated.csv
       hash: md5
-      md5: 8d2d3d1f1cee19f168ca6b75fda3c25e
-      size: 709121
+      md5: ca3d31d507de785f09210b1bdbb9ac8a
+      size: 709109
     - path: .\src\data\step_9_missing_value_imputation.py
       hash: md5
       md5: 8629dce4eb8b0ede77c3c0e324aaf85a
       size: 6661
+  step_10_feture_selection_and_feature_engineering:
+    cmd: python .\src\features\step_10_feture_selection_and_feature_engineering.py
+      .\data\processed\gurgaon_properties_post_feature_selection.csv
+    deps:
+    - path: .\data\processed\gurgaon_properties_post_feature_selection.csv
+      hash: md5
+      md5: e229a331b010bedaf8e289f95372a22e
+      size: 231648
+    - path: .\src\features\step_10_feture_selection_and_feature_engineering.py
+      hash: md5
+      md5: 7ba34dd1f3b421ba21997fc43dc3bd44
+      size: 2902

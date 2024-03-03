@@ -41,3 +41,9 @@ stages:
     deps:
     - .\src\data\step_9_missing_value_imputation.py
     - .\data\processed\gurgaon_properties_outliers_trated.csv
+
+   step_10_feture_selection_and_feature_engineering:
+    cmd: python .\src\features\step_10_feture_selection_and_feature_engineering.py .\data\processed\gurgaon_properties_post_feature_selection.csv
+    deps:
+    - .\src\features\step_10_feture_selection_and_feature_engineering.py
+    - .\data\processed\gurgaon_properties_post_feature_selection.csv
