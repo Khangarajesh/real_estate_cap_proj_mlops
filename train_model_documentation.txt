@@ -1,0 +1,74 @@
+
+
+##train_model
+1)Befor training a model it is important to do the model selection. 
+2)Once the one specific model is selected you can define hyperparameter space for that particular model
+3)now we will need to select the best hyperparameters based on model loss 
+4)we will do this using hyperopt. Following is the way using which we select the best parameters using hyperopt
+
+argmin = fmin(
+    space = space,
+    fn = evaluate_model(),
+    trials = Trials(),
+    algo = tpe.suggest,
+    max_evals = 5,
+    verbose = True
+)
+
+a)space: Hyperparameter space 
+b)evaluate_model:
+
+*This function takes the parameters from space as a input 
+now note that when evaluate_model takes input parameter it takes using hyperopts fmin function
+so the parametrs will alwyas be in the form of float which need to be convert into integer format.
+that is wht in evaluate_model function first we convert the parameters into int format
+
+*Then after we transform the column usin ordinal encoding, standardscaler, onhotencoding and targetencoder using column transformer
+(while dooing column transformation using Onehotencoding we use parameter drop='first' this is done to avoide multicolliniarity
+and space_output = False This done to get dense numpy array)
+
+*space_output = False  --dense numpy aray (more memmory size will required)--sparse metric
+      r  G
+red   1   0
+green 0   1
+
+*space_output = True ---(this saves lots of memmory)--no sparse metric
+       1stcol(for red)  2ndcol(for green)
+red   
+green
+red
+(0,1)  1.0  (non zero value 1.0 present in oth row and 1st col)
+(1,1)  1.0  (non zero value 1.0 present in 1st row and 1st col)
+(2,1)  1.0  (non zero value 1.0 present in 2nd row and 1st col)
+ 
+*Target encoder takes the mean of target column for each group of cataegory in categorical column
+
+
+*Then we use a pipeline for columntramsformation and model initialization
+(Note that while doing model initialization we used **params This is used for opening of dictionary. So rather than passing eacg parameter 
+seperately we can pass all parameters using dictionary.)
+We fit the pipeline for model training
+
+*calculate the meansquared error and log it with mlflow
+
+*return the output in dictionary format 
+It is important to return the value of function evaluate_model in dictonary format.
+loss: , status: STATUS_OK
+STATUS_OK indicates the objective function runs succesfully.
+
+c)trials = Trials():
+This parameter will keep the record of each parameters combination and their associated model metric (i.e RMSE)
+
+d)algo = tpe.suggest:
+This parameters selects the algorithm to explore the hyperparametrs space 
+
+e)max_evals:
+This parametr select the maximum number of hyperparametrs combinations
+ex: if max_evals = 5 then model will be evealuated based on 5 different combination of hyperparametrs value
+
+#Now params = space_eval(space,argmin) will hold the value of best hyperparametrs with minimum loss
+
+#you use this params for model training
+#use mlflow.log_params() to log parametrs
+#use mlflow.log_metric() to log metric
+#use mlflow.sklearn.log_model() to log the model

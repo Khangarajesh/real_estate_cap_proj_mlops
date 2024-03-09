@@ -107,3 +107,14 @@ stages:
       hash: md5
       md5: 7ba34dd1f3b421ba21997fc43dc3bd44
       size: 2902
+  step_11_model_trainig:
+    cmd: python .\src\models\train_model.py .\data\processed\gurgaon_properties_post_feature_selection.csv
+    deps:
+    - path: .\data\processed\gurgaon_properties_post_feature_selection.csv
+      hash: md5
+      md5: e229a331b010bedaf8e289f95372a22e
+      size: 231648
+    - path: .\src\models\train_model.py
+      hash: md5
+      md5: 9e56d5e11cec1483f07adb49bccbe499
+      size: 5710

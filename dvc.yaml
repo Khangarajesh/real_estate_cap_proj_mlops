@@ -47,3 +47,9 @@ stages:
     deps:
     - .\src\features\step_10_feture_selection_and_feature_engineering.py
     - .\data\processed\gurgaon_properties_post_feature_selection.csv
+
+   step_11_model_trainig:
+    cmd: python .\src\models\train_model.py .\data\processed\gurgaon_properties_post_feature_selection.csv
+    deps:
+    - .\src\models\train_model.py
+    - .\data\processed\gurgaon_properties_post_feature_selection.csv
