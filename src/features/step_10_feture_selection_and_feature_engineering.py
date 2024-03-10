@@ -3,6 +3,7 @@ import numpy as np
 import pathlib
 import re
 from sklearn.preprocessing import OrdinalEncoder
+import joblib 
 
 def read_file(input_path='/data/processed/gurgaon_properties_missing_values_imputed.csv'):
     home_dir = pathlib.Path(__file__).parent.parent.parent
@@ -70,7 +71,8 @@ def feature_selection_and_engg():
     x_label.drop(['others', 'pooja room', 'study room'], inplace = True, axis = 1)
     export_df = x_label
     export_df['price'] = y_label
-
+    
+    joblib.dump(export_df,'df.joblib')
     send_file(export_df)
     
     

@@ -77,3 +77,12 @@ ex: if max_evals = 5 then model will be evealuated based on 5 different combinat
 joblib.dump(model,path) --this will serialize and save the python object in .joblib file
 (Serialization is the process of converting an object or data structure into a format 
 that can be easily stored or transmitted and reconstructed later.)
+
+6)Note that rather than hard coding the hyperparameters we have define the hyperparametrs in params.yaml file 
+and used it dynamically in train_model file.(benifit of doing this is that you don't need to go and touch the code 
+whenever you want to change the hyperparametrs. Rathter you just open the params.yaml file and do the changes)
+
+7)we know that we are using mlfow for experimentation and model tracking 
+so whenever you want to load any previously trained model, you will just have to go to the mlflow ui
+click on the sklearn of that particular model, copy the code and run it on python file. That's it you will be able to load the model file
+in python file.

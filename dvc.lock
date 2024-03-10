@@ -105,8 +105,8 @@ stages:
       size: 231648
     - path: .\src\features\step_10_feture_selection_and_feature_engineering.py
       hash: md5
-      md5: 7ba34dd1f3b421ba21997fc43dc3bd44
-      size: 2902
+      md5: cd672092e868120c4109a059d37b5ac0
+      size: 2962
   step_11_model_trainig:
     cmd: python .\src\models\train_model.py .\data\processed\gurgaon_properties_post_feature_selection.csv
     deps:
