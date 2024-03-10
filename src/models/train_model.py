@@ -13,29 +13,47 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import pathlib
 import joblib
+import yaml
 
 
 def find_the_best_model(X_train,y_train,X_test,y_test):
     
+    """
     #Defining the hyperparameter space
     hyperparameters = {
         'RandomForestRegressor' : {
-            'n_estimators' :  hp.choice("n_estimators", [50, 100, 150, 00, 250]),
+            'n_estimators' :  hp.choice("n_estimators", [50, 100, 150,200, 250]),
             'max_depth': hp.choice('max_depth', [2,6,8,10,15,20]),
             'max_features': hp.choice('max_features', ["sqrt", 'log2', None]),
             'min_samples_split': hp.choice('min_samples_split', [5,10,20])
         }
     }
+    """
+    
+    #import parametrs from params.yaml file
+    file_path = pathlib.Path(__file__).parent.parent.parent.as_posix() + '/params.yaml'
+    params = yaml.safe_load(open(file_path))['train_model']
+    
+    #use hyperparametrs value dynamically
+    hyperparameters = {
+        'RandomForestRegressor' : {
+            'n_estimators' :  hp.choice("n_estimators", params['n_estimators']),
+            'max_depth': hp.choice('max_depth', params['max_depth']),
+            'max_features': hp.choice('max_features', params['max_features']),
+            'min_samples_split': hp.choice('min_samples_split', params['min_samples_split'])
+        }
+    }  
     
     
     #Define function which will find the models best hyperparameters with minimum loss 
     def evaluate_model(hyperopt_params):
         params = hyperopt_params
         #The hyperopts function i.e fmin will recive the parameters in float. we will need to convert them into int form 
-        if 'n_estimators' in params : params['n_estimators'] = int(params['n_estimators'])
+        
         if 'max_depth' in params : params['max_depth'] = int(params['max_depth'])
         if 'max_features' in params : params['max_features'] = params['max_features']
-        if 'min_samples_split' in params : params['min_samples_split'] = params['min_samples_split']
+        if 'min_samples_split' in params : params['min_samples_split'] = int(params['min_samples_split'])
+        if 'n_estimators' in params : params['n_estimators'] =  int(params['n_estimators'])
         
         preprocesser = ColumnTransformer(
             transformers = [
@@ -80,10 +98,11 @@ def find_the_best_model(X_train,y_train,X_test,y_test):
         run_ids += [(run_id,run_name)]
         params = space_eval(space,argmin)
         
-        if 'n_estimators' in params : params['n_estimators'] = int(params['n_estimators'])
+        
         if 'max_depth' in params : params['max_depth'] = int(params['max_depth'])
         if 'max_features' in params : params['max_features'] = params['max_features']
-        if 'min_samples_split' in params : params['min_samples_split'] = params['min_samples_split']
+        if 'min_samples_split' in params : params['min_samples_split'] = int(params['min_samples_split'])
+        if 'n_estimators' in params : params['n_estimators'] =  int(params['n_estimators'])
         
         mlflow.log_params(params)
         
@@ -113,7 +132,7 @@ def find_the_best_model(X_train,y_train,X_test,y_test):
     return model
 
 def save_model(model,output_path):
-    joblib.dump(model,output_path,'/model.joblib')
+    joblib.dump(model, output_path + '/model.joblib')
 
 
 def main():
@@ -128,6 +147,7 @@ def main():
     
     model = find_the_best_model(X_train,y_train,X_test,y_test)     
     output_path = home_dir.as_posix() + '/model'
+    pathlib.Path(output_path).mkdir(parents = True, exist_ok = True)
     
     save_model(model,output_path)
 
@@ -139,7 +159,8 @@ if __name__ == '__main__':
 
     
     
-    #save model code pending
-    #use params.yaml file pending
-    #solve the error ehile dvc repro
+    #save model code pending --done
+    #use params.yaml file pending--done
+    #solve the error ehile dvc repro --done
     #check the file 
+    #dvc experimentation tracking

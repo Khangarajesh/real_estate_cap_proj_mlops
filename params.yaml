@@ -1,0 +1,6 @@
+
+train_model:
+  n_estimators: [50, 100, 150,200, 250]
+  max_depth: [2,6,8,10,15,20]
+  max_features: ["sqrt", 'log2',null] #note tahat yaml file does not take None so you will have to use null or symbol ~ instead ofusing None 
+  min_samples_split: [5,10,20]

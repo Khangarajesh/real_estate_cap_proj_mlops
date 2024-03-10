@@ -72,3 +72,8 @@ ex: if max_evals = 5 then model will be evealuated based on 5 different combinat
 #use mlflow.log_params() to log parametrs
 #use mlflow.log_metric() to log metric
 #use mlflow.sklearn.log_model() to log the model
+
+5)Save the model using joblib
+joblib.dump(model,path) --this will serialize and save the python object in .joblib file
+(Serialization is the process of converting an object or data structure into a format 
+that can be easily stored or transmitted and reconstructed later.)

@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Mlops/real_estate_mlops/Real_estate_cap_proj/mlruns/0/6002a9df25bc4b81b8ad408847d52acf/artifacts
+end_time: 1710042826207
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 6002a9df25bc4b81b8ad408847d52acf
+run_name: Randomforest regressor
+run_uuid: 6002a9df25bc4b81b8ad408847d52acf
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1710042820721
+status: 4
+tags: []
+user_id: rkhan
