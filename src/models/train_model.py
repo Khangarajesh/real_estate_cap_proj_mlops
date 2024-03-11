@@ -141,14 +141,15 @@ def main():
     file_path = home_dir.as_posix() + '/data/processed/gurgaon_properties_post_feature_selection.csv'
     
     df = pd.read_csv(file_path)
+    df.drop(['Unnamed: 0.1', 'Unnamed: 0'], axis = 1, inplace = True)
     x = df.drop('price', axis = 1)
     y = df['price']
+    print(x)
     X_train,X_test,y_train,y_test = train_test_split(x,y, test_size = 0.2, random_state = 42)
     
     model = find_the_best_model(X_train,y_train,X_test,y_test)     
     output_path = home_dir.as_posix() + '/model'
     pathlib.Path(output_path).mkdir(parents = True, exist_ok = True)
-    
     save_model(model,output_path)
 
 if __name__ == '__main__':

@@ -71,8 +71,8 @@ def feature_selection_and_engg():
     x_label.drop(['others', 'pooja room', 'study room'], inplace = True, axis = 1)
     export_df = x_label
     export_df['price'] = y_label
-    
-    joblib.dump(export_df,'df.joblib')
+  
+    joblib.dump(export_df,'f_df.joblib')
     send_file(export_df)
     
     
