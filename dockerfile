@@ -1,5 +1,5 @@
 #this line instructs Docker to start with an official Python runtime image for version 3.8 with the "slim" variant. 
-FROM python:3.8-slim
+FROM python:3.9-slim
 
 #Sets the working directory inside the container to /docker_app. This is the directory where subsequent commands will be executed.
 WORKDIR /docker_app
