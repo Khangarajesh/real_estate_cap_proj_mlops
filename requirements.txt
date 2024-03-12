@@ -1,7 +1,7 @@
 streamlit
 joblib
 pathlib
-scikit-learn
+scikit-learn==1.1.1
 pandas
 RandomForestRegressor
 os
