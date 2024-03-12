@@ -1,0 +1,55 @@
+name: ci pipeline #(name of the gitgub action workflow)
+
+#triggering condition of github action workflow
+on:
+  push:
+
+#permissions required for github action workflow to interact with GIT HUB
+permissions:
+  id-token: write #Github action will require write permission to write git hub security token to enter in github
+  contents: read #github action will require read permission to access the content inside Github
+
+jobs: #workflow starts from here
+   
+  #1st part of workflow
+  Integration:
+    name: continuous Integration #This is a user-defined name for the job. It is mainly for display purposes in the GitHub Actions interface
+    runs-on: ubuntu-latest  #The ubuntu-latest option means that GitHub Actions will automatically select the latest available version of the Ubuntu runner (virtual machine) to execute the job
+  
+    steps: #This is a list of individual tasks or steps that will be executed in sequence as part of the job. 
+    - name: checkout code  #The name attribute is again for display purposes
+      uses: actions/checkout@v3 #is commonly used to check out the source code repository into the runner's working directory.
+
+
+  #2nd part of workflow
+  build-and-push-ecr-image:
+    name: push to ecr 
+    needs: Integration  # The needs keyword specifies that this job depends on the successful completion of the "Integration" job
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout code
+      uses: actions/checkout@v3
+
+    - name: install utilities  #This step installs additional utilities on the runner using the apt-get package manager. The jq and unzip tools are being installed
+      run: |
+       sudo apt-get update
+       sudo apt-get install -y jq unzip   
+       # this installs utilities jq and unzip on runner
+       #jq is a lightweight and flexible command-line JSON processor. It is often used for parsing and manipulating JSON data.
+       #unzip is for extracting compressed files in the ZIP format
+
+    - name: configure aws credentials #login to aws
+      uses: aws-actions/configure-aws-credentials@v1 #this is a aws runner
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}     
+
+
+
+
+  #3rd part of workflow
+  #continuous-deployment:
+
+
