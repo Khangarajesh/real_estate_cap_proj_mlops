@@ -40,13 +40,32 @@ jobs: #workflow starts from here
        #unzip is for extracting compressed files in the ZIP format
 
     - name: configure aws credentials #login to aws
-      uses: aws-actions/configure-aws-credentials@v1 #this is a aws runner
+      uses: aws-actions/configure-aws-credentials@v1 #this is a  GitHub Actions action provided by AWS and it is used in a GitHub Actions workflow to configure AWS credentials
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}     
 
+    - name: Login to amazon ecr
+      id: login-ecr  #This assigns an identifier to the step. The id can be used to reference the output of this step later in the workflow
+      uses: aws-actions/amazon-ecr-login@v1 #The action is specifically designed to perform the login operation for Amazon Elastic Container Registry (ECR).
 
+    - name: Build, tag and push image to ecr
+      id: build-image
+      env: #This specifies environment variables that will be available to the steps within this job
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} # It is pulling the registry URL from the output of the previous step, likely obtained during the ECR login step.
+        ECR_REPOSITORY: ${{ secrets.REPOSITORY_NAME }}
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: ${{ secrets.AWS_REGION }}   
+        IMAGE_TAG: latest_1
+      run: |
+        # Build a docker container and
+        # push it to ECR so that it can
+        # be deployed to ECS...
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG . #dot (.) refers to the current directory, meaning that the build context includes all the files in the current directory.
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG        
+      
 
 
   #3rd part of workflow
