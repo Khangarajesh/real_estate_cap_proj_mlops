@@ -78,7 +78,7 @@ jobs: #workflow starts from here
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v1 #aws-actions: This is the GitHub organization or user namespace where the action is hosted.#configure-aws-credentials: This is the name of the GitHub Action.
       with:                                          
-        aws-access-key-id: ${{ secret.AWS_ACCESS_KEY_ID }}
+        aws-access-key-id: ${{ secretS.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: ${{ secrets.AWS_REGION }}
 
@@ -102,4 +102,4 @@ jobs: #workflow starts from here
 
     - name: push to docker container
       run: |
-        docker run -d -p 8080:8080 --ipc='host' --name=real-estate -e 'AWS_ACCESS_KEY_ID = ${{ secret.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY = ${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION = ${{ secrets.AWS_REGION }}'  ${{ secret.AWS_ECR_LOGIN_URI }}/${{ secrets.REPOSITORY_NAME}}:IMAGE_TAG
+        docker run -d -p 8080:8080 --ipc='host' --name=real-estate -e 'AWS_ACCESS_KEY_ID = ${{ secretS.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY = ${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION = ${{ secrets.AWS_REGION }}'  ${{ secretS.AWS_ECR_LOGIN_URI }}/${{ secrets.REPOSITORY_NAME}}:IMAGE_TAG
