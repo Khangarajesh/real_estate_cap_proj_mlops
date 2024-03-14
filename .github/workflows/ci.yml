@@ -69,6 +69,37 @@ jobs: #workflow starts from here
 
 
   #3rd part of workflow
-  #continuous-deployment:
+  continuous-deployment:
+    name: continuous deployment
+    needs: build-and-push-ecr-image
+    runs-on: ubuntu-latest
 
+    steps:    
+    - name: configure aws credentials
+      uses: aws-actions/configure-aws-credentials@v1 #aws-actions: This is the GitHub organization or user namespace where the action is hosted.
+      with:                                          #configure-aws-credentials: This is the name of the GitHub Action.
+        aws-access-key-id: ${{ secret.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ${{ secrets.AWS_REGION }}
 
+    - name: Login to amezon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: pull image
+      id: pull-image
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} #THIS WILL GET YOU THE URL OF AWS ECR PAGE 
+        ECR_REPOSITORY: ${{ secrets.REPOSITORY_NAME}}
+        IMAGE_TAG: latest_1
+      run: |
+        docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    
+    - name: delete previous container
+      run: |
+        docker rm -f real-estate || true  #docker: This invokes the Docker, rm: This subcommand is used to remove Docker containers.
+                                          #-f: This flag is short for --force
+
+    - name: push to docker container
+      run: |
+        docker run -d -p 8080:8080 --ipc='host' --name=real-estate -e 'AWS_ACCESS_KEY_ID = ${{ secret.AWS_ACCESS_KEY_ID }}' -e 'AWS_SECRET_ACCESS_KEY = ${{ secrets.AWS_SECRET_ACCESS_KEY }}' -e 'AWS_REGION = ${{ secrets.AWS_REGION }}'  ${{ secret.AWS_ECR_LOGIN_URI }}/${{ secrets.REPOSITORY_NAME}}:IMAGE_TAG
