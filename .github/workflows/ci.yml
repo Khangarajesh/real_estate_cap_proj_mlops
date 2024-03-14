@@ -1,4 +1,4 @@
-name: ci pipeline #(name of the gitgub action workflow)
+name: ci pipeline #(name of the gitgub action workflow).
 
 #triggering condition of github action workflow
 on:
