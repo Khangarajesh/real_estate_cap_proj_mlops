@@ -89,7 +89,7 @@ jobs: #workflow starts from here
     - name: pull image
       id: pull-image
       env:
-        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} #THIS WILL GET YOU THE URL OF AWS ECR PAGE 
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} #THIS WILL GET YOU THE URL OF AWS ECR PAGE .
         ECR_REPOSITORY: ${{ secrets.REPOSITORY_NAME}}
         IMAGE_TAG: latest_1
       run: |
