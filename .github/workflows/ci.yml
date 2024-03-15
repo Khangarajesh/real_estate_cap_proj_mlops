@@ -98,7 +98,7 @@ jobs: #workflow starts from here
     - name: delete previous container
       run: |
         docker rm -f real-estate || true  #docker: This invokes the Docker, rm: This subcommand is used to remove Docker containers.
-                                          #-f: This flag is short for --force
+                                          #-f: This flag is short for --force..
 
     - name: push to docker container
       run: |
