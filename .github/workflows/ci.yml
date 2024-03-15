@@ -72,7 +72,7 @@ jobs: #workflow starts from here
   continuous-deployment:
     name: continuous deployment
     needs: build-and-push-ecr-image
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:    
     - name: configure aws credentials
