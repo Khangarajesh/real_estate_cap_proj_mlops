@@ -84,13 +84,13 @@ jobs: #workflow starts from here
 
     - name: Login to amezon ECR
       id: login-ecr
-      uses: aws-actions/amazon-ecr-login@v1
+      uses: aws-actions/amazon-ecr-login@v1 
 
     - name: pull image
       id: pull-image
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }} #THIS WILL GET YOU THE URL OF AWS ECR PAGE .
-        ECR_REPOSITORY: ${{ secrets.REPOSITORY_NAME}}
+        ECR_REPOSITORY: ${{ secrets.REPOSITORY_NAME }}
         IMAGE_TAG: latest_1
       run: |
         docker pull $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
