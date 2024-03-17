@@ -76,8 +76,9 @@ jobs: #workflow starts from here
 
     steps: 
 
-    - name: craet group
+    - name: create group
       run: |
+        sudo groupadd docker
         sudo usermod -aG docker self-hosted
         sudo systemctl restart docker
 
