@@ -74,7 +74,15 @@ jobs: #workflow starts from here
     needs: build-and-push-ecr-image
     runs-on: self-hosted
 
-    steps:    
+    steps: 
+
+    - name: craet group
+      run: |
+        sudo usermod -aG docker self-hosted
+        sudo systemctl restart docker
+
+
+
     - name: configure aws credentials
       uses: aws-actions/configure-aws-credentials@v1 #aws-actions: This is the GitHub organization or user namespace where the action is hosted.#configure-aws-credentials: This is the name of the GitHub Action.
       with:                                          
