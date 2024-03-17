@@ -78,7 +78,6 @@ jobs: #workflow starts from here
 
     - name: create group
       run: |
-        sudo groupadd docker
         sudo adduser self-hosted
         sudo usermod -aG docker self-hosted
         sudo systemctl restart docker
