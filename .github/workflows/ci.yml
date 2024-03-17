@@ -40,7 +40,7 @@ jobs: #workflow starts from here
        #unzip is for extracting compressed files in the ZIP format
 
     - name: configure aws credentials #login to aws
-      uses: aws-actions/configure-aws-credentials@v1 #this is a  GitHub Actions action provided by AWS and it is used in a GitHub Actions workflow to configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v4 #this is a  GitHub Actions action provided by AWS and it is used in a GitHub Actions workflow to configure AWS credentials
       with:
         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -48,7 +48,7 @@ jobs: #workflow starts from here
 
     - name: Login to amazon ecr
       id: login-ecr  #This assigns an identifier to the step. The id can be used to reference the output of this step later in the workflow
-      uses: aws-actions/amazon-ecr-login@v1 #The .action is specifically designed to perform the login operation for Amazon Elastic Container Registry (ECR).
+      uses: aws-actions/amazon-ecr-login@v2 #The .action is specifically designed to perform the login operation for Amazon Elastic Container Registry (ECR).
 
     - name: Build, tag and push image to ecr
       id: build-image
@@ -78,7 +78,7 @@ jobs: #workflow starts from here
     steps:
 
     - name: configure aws credentials
-      uses: aws-actions/configure-aws-credentials@v1 #aws-actions: This is the GitHub organization or user namespace where the action is hosted.#configure-aws-credentials: This is the name of the GitHub Action.
+      uses: aws-actions/configure-aws-credentials@v4 #aws-actions: This is the GitHub organization or user namespace where the action is hosted.#configure-aws-credentials: This is the name of the GitHub Action.
       with:                                          
         aws-access-key-id: ${{ secretS.AWS_ACCESS_KEY_ID }}
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
