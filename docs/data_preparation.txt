@@ -1,0 +1,27 @@
+For creating an end to end productionize ml model it is important to move from jupyter notebook to vscode and write a code in modular format 
+in a well structured way
+
+To do this we prepare the data for training of ml model in different stages in differnt python file and run them all 
+sequentially in dvc.yaml file.
+
+following are the stages:
+
+  step_1_FlatsDataset_cleaning
+  step_2_Independent_HousesDatset_cleaning
+  step_3_merge_flats_and_house
+  step_4_data_preprocessing_level_2
+  step_5_Feature_Engineering
+  step_8_Outlier_Treatment
+  step_9_missing_value_imputation
+  step_10_feture_selection_and_feature_engineering
+  step_11_model_trainig
+
+To create the project in more structure formate we use cookiecutter template 
+
+Using a Cookiecutter template can greatly enhance the structure and organization of your project  
+
+When creating a machine learning project, especially one that involves multiple stages like data cleaning, 
+preprocessing, feature engineering, and model training, using a Cookiecutter template can help ensure consistency 
+and maintainability across your codebase.
+
+This ensures reproduciblity and maintainablity of project.
