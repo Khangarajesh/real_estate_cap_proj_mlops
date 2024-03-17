@@ -68,7 +68,7 @@ jobs: #workflow starts from here
       
 
 
-  #3rd part of workflow
+  #3rd part of workflow.
   continuous-deployment:
     name: continuous deployment
     needs: build-and-push-ecr-image
