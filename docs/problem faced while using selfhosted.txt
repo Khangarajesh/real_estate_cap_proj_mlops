@@ -1,0 +1,28 @@
+we use to deploy our application throgh docker container on github-action-runner's machine like ubuntu-latest 
+
+But problem here was that the runner use to take any randome machine(ubuntu-latest) on cloud, runs the docker file and destroys it
+Because of these we could never interact with the application which we have build, cintainerize and ran on random runner.
+
+So to solve this problem we decided to use self hosted machine. 
+How to create self-hosted machine ?
+1) create EC2 instance  on AWS 
+2) connect to that instance through ssh or other way
+3) create self-hosted runner on github
+4) run the github codes on EC2 instance 
+
+This will create the self hosted runner on EC2
+
+Now you can interact with the application by connecting to EC2 instance using EC2 ip and port number throug web.
+
+{
+while using self hosted machine we faced certain issues.
+
+The code which was running perfectly fine with ubuntu-latest suddenly started giving an error while connecting with ECR when replaced with self-hosted machine.
+eroor is : Using --password via the CLI is insecure. Use --password-stdin.
+ 
+This was hapening because in aws-actions/amezon-ecr-login repository aws is using --password rather than --password-stdin
+this is an issue of aws. we informed aws about this.
+}
+
+Another benfit of using self-hosted machine is you do not need to install important and big libraries multiple times
+you install them only once.

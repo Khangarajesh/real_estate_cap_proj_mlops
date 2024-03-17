@@ -1,0 +1,17 @@
+Once mode training annd tracking via Mlflow is done we finally will use this model for prediction
+
+In order to predict the price of property, the model will required some input information from user
+on which model was trained.
+
+To make this possible we created an app using streamlit.
+
+To use the trained model we will need to load the best performing model from mlfow in app.py file
+
+To give user an option while coolecting information from them we will need a dataset. 
+so we created the joblib file of data set and load it in app.py file.
+
+Now we have both data and model in app.py file for price prediction of property.
+
+##Note that we can also use FastApi with uvicorn or guvicorn for app creation.
+
+But fot this project streamlit is the perfect option.
