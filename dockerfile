@@ -6,6 +6,7 @@ WORKDIR /docker_app
 
 #Copies the contents of the current directory (where the Dockerfile is located) into the container's /docker_app directory.
 COPY app.py /docker_app/app.py
+COPY f_df.joblib /docker_app
 COPY requirements.txt /docker_app/requirements.txt
 COPY src/ /docker_app/src
 
