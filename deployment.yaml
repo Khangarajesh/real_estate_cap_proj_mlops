@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: real-estate-price-pred
 spec:
-  replicas: 3  #this will create 3 pods 
+  replicas: 3  #this will create 3 pods #
   selector:
     matchLabels:
       app: real-estate-price-pred
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: real-estate-price-pred
-        image: rajesh2799/real_estate_price_prediction:latest
+        image: rajesh2799/real_estate_price_prediction_new:latest
         resources:
           limits:
             memory: "128Mi"

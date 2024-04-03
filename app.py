@@ -20,15 +20,19 @@ def main():
     #df = pd.read_pickle("df.pkl") 
     file_path = pathlib.Path(__file__).parent.as_posix() + '/f_df.joblib'
     df = joblib.load(file_path)
+
+        
     
     #df.drop(['Unnamed: 0.1'], axis = 1, inplace = True)
     #st.dataframe(df)
     
     #model loading 
-    logged_model = 'runs:/f030090d1f1140608b5bcc1133ae9251/model'
-    pipeline = mlflow.sklearn.load_model(logged_model)[0]
-    #pipeline_path = pathlib.Path(__file__).parent.as_posix() + '/model/model.joblib'
-    #pipeline = load(pipeline_path)
+    #logged_model = 'runs:/f030090d1f1140608b5bcc1133ae9251/model'
+    #pipeline = mlflow.sklearn.load_model(logged_model)[0]
+    
+    pipeline_path = pathlib.Path(__file__).parent.as_posix() + '/model/model.joblib'
+    pipeline = load(pipeline_path)
+   
 
     #property type
     prop_type = st.selectbox('Property Type',['flat', 'house'])
