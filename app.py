@@ -27,12 +27,12 @@ def main():
     #st.dataframe(df)
     
     #model loading 
-    logged_model = 'runs:/f030090d1f1140608b5bcc1133ae9251/model'
-    pipeline = mlflow.sklearn.load_model(logged_model)[0]
+    #logged_model = 'runs:/f030090d1f1140608b5bcc1133ae9251/model'
+    #pipeline = mlflow.sklearn.load_model(logged_model)[0]
     
     
-    #pipeline_path = pathlib.Path(__file__).parent.as_posix() + '/model/model.joblib'
-    #pipeline = load(pipeline_path)
+    pipeline_path = pathlib.Path(__file__).parent.as_posix() + '/model/model.joblib'
+    pipeline = load(pipeline_path)[0]
     
    
 

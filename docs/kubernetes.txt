@@ -1,0 +1,15 @@
+we create the image out of our docker file (docker build -t real-eastate-price-prediction-v1 .)
+
+this image will be present in docker engine 
+
+create repository docker in docker hub
+
+tage that image with repository name (docker tag real-eastate-price-prediction-v1 rajesh2799/real_estate_price_prediction_new)
+
+push the image in docker hub repository (click on push in docker engine)
+
+the image need to push in docker repository in order to pull it
+
+then we move that image to kubernetes cluster (minikube image load rajesh2799/real_estate_price_prediction_new:latest)
+
+deploy that image into a pod 
