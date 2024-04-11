@@ -1,15 +1,42 @@
+ 
+
+##Kubernetes Deployment
+
+My real estate price pred application is ready. I contenarized it and creat Dockerfile
+
+1)I build the image using that Dockerfile
+The image is present at local machine which need to be push to the kubernetese cluster. (Note that cluster is also present at local so we can directly transfer an image to cluster)
 we create the image out of our docker file (docker build -t real-eastate-price-prediction-v1 .)
 
-this image will be present in docker engine 
+#This image will be present in docker engine create repository docker in docker hub
 
-create repository docker in docker hub
-
+2)tag that image
+We tag the image username/repository name
 tage that image with repository name (docker tag real-eastate-price-prediction-v1 rajesh2799/real_estate_price_prediction_new)
 
-push the image in docker hub repository (click on push in docker engine)
+3)Push it into the docker hub
+Once I build the image it is important to push that image to docker repository which is present on docker hub (note that when we build the image then if gets created in docker engine. in order to pull the image it first need to push to the docker hub).
 
+–docker pulls image only from docker hub repository
+
+push the image in docker hub repository (click on push in docker engine)
 the image need to push in docker repository in order to pull it
+
+4)then load that image into minikube cluster 
+Now we can pull the docker image from docker hub repository and load it in kubernetes cluster 
+Command use –kubernetes image load image name
 
 then we move that image to kubernetes cluster (minikube image load rajesh2799/real_estate_price_prediction_new:latest)
 
-deploy that image into a pod 
+
+5)And deploy that image by applying deployment.yaml file.
+Once you load the image we need to deploy it. Deploying the image is nothing but creating a pod from docker image.
+It is important to create pod becaus for orchestration of containers kubernetes needs full control over docker image which is possible only after creating pod. Pod adds essential things in docker image to make this possible
+
+You can check the pods using
+Kubectl get pods 
+
+deploy that image into a pod
+
+
+
