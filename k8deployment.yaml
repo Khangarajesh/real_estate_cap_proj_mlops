@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: real-estate-price-pred
+spec:
+  replicas: 3  #this will create 3 pods #
+  selector:
+    matchLabels:
+      app: real-estate-price-pred
+  template:
+    metadata:
+      labels:
+        app: real-estate-price-pred
+    spec:
+      containers:
+      - name: real-estate-price-pred
+        image: rajesh2799/real_estate_price_prediction_new
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8080
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: real-estate-price-pred
+spec:
+  selector:
+    app: real-estate-price-pred
+  ports:
+  - port: 1234
+    targetPort: 8080

@@ -1,14 +1,14 @@
 apiVersion: machinelearning.seldon.io/v1
 kind: SeldonDeployment
 metadata:
-  name: real-estate-price-prediction
+  name: seldon-real-estate-price-prediction
   namespace: seldon-system
 spec:
-  name: real-estate-price-prediction
+  name: seldon-real-estate-price-prediction
   predictors:
   - graph:
       implementation: SKLEARN_SERVER
       modelUri: model/model.joblib
       name: prediction
     name: default
-    replicas: 1
+    replicas: 4
